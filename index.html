@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Личный дневник</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="wpapper__header">
+                <a href="#" class="logo">
+                    <img src="images/logo.svg" alt="Картинка не загрузилась" class="logo__img">
+                </a>
+            </div>
+            <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Заголовок</th>
+                <th>Описание</th>
+                <th>Картинка</th>
+                <th>Дата создания</th>
+                <th>Дата изменения</th>
+
+             </tr>   
+        </table>
+
+            <div class="content">
+                <button id="myBtn">Добавить запись</button>
+                <div id="myModal" class="modal">
+                    <div class="modal_content">
+                        <span class="close">&times;</span>
+                        <p>Создание новое записи</p>
+                        <form action="" class="modal__form">
+                            <input type="text" class="modal__input" placeholder="Заголовок">
+                            <textarea class="modal__area" placeholder="Напишите сюда свои мысли"></textarea>
+                            <button class="modal__btn1" type="submit">Добавить картинку</button><br>
+                            <button class="modal__btn2" type="submit">Сохранить запись</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+*::after,
+*::before{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    background-image: url(./images/fon.jpg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+    min-height: 100vh;
+    opacity: 0.8;
+}
+.container{
+   
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+.logo__img {
+    width: 130px;
+    height: 130px;
+}
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+.modal_content{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    
+}
+
+.close{
+    color: rgb(243, 10, 10);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.modal__area{
+    width: 99%;
+    min-height: 500px;
+    margin: 0 auto;
+}
+.modal__input{
+    margin-bottom: 15px;
+}
+.modal__btn1{
+    margin-bottom: 15px;
+}
+.modal__area{
+    margin-bottom: 15px;
+}
+table{
+    width: 80%;
+    text-align: center;
+}
+th{
+    background-color: rgb(43, 255, 0);
+}
+
+.table{
+    margin-bottom: 15px;
+}
