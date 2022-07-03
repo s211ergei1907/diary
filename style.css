@@ -58,6 +58,10 @@ body{
 .modal__input{
     margin-bottom: 15px;
 }
+.modal__input_images{
+    width: 98%;
+    margin-bottom: 15px;
+}
 .modal__btn1{
     margin-bottom: 15px;
 }
