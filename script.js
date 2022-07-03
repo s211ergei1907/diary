@@ -64,3 +64,29 @@ btnAddNode.onclick = () => {
 
 };
 
+function findNotesByWord(word) {
+    return notes.filter(
+        ({ title, body, createDate }) =>
+            body.includes(word) || title.includes(word) || createDate === word
+    );
+}
+document.querySelector(".notes").innerHTML = createNotes(notes).join("");
+document.querySelector("#finderInput").addEventListener("input", (e) => {
+    document.querySelector(".notes").innerHTML = createNotes(
+        findNotesByWord(e.target.value)
+    ).join("");
+});
+
+function createNotes(notes) {
+    return notes.map(({ title, body, createDate, modified, lastModified }) => {
+        return `
+            <div class="note">
+                    <h2>${title}</h2>
+                    <div>${body}</div>
+              <p>Создано: <i>${createDate}</i></p>
+              ${modified ?? `<p>Изменено: <i${lastModified}</i></p>`}
+            </div>
+        `;
+    });
+}
+
