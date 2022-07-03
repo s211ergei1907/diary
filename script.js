@@ -1,12 +1,24 @@
-let modal = document.getElementById("myModal");
-let btn = document.getElementById("myBtn");
-let span = document.getElementsByClassName("close")[0];
-btn.onclick = function(){
-    modal.style.display = "block";
-}
+const modal = document.getElementById("myModal");
+const btnOpenModel = document.getElementById("myBtn");
+const btnCloseModal = document.querySelectorAll(".close")[0];
 
-span.onclick = function(){
-    modal.style.display = "none";
+const modalTitle = document.querySelector('.modal__input');
+const modalDescr = document.querySelector('.modal__area');
+const modalImagesLink = document.querySelector('.modal__input_images');
+const btnAddNode = document.querySelector('.modal__btn2');
+
+
+
+//Массив в который будем кидать объект
+let notes = [];
+
+btnOpenModel.onclick = () =>  {
+    // отобразим модальное окно
+    modal.classList.remove('hide');
+  };
+
+btnCloseModal.onclick = () => {
+    modal.classList.add('hide');
 }
 
 
@@ -18,32 +30,37 @@ span.onclick = function(){
 
 // Логика (моя)
 //Получаем элементы из html
-let modalTitle = document.querySelector('.modal__input');
-let modalDescr = document.querySelector('.modal__area');
-let modalImagesLink = document.querySelector('modal__input_images');
-let addNodes = document.querySelector('.modal__btn2');
-let todo1;
-let todo2;
-let todo3;
+
+
 
 // addEventListener - метод который отслеживает клик по кнопке и запускать функцию(вторым параметром)
-addNodes.addEventListener('click', function(){
+btnAddNode.onclick = () => {
 
-    // let todoList = [];
     //Каждое новое дело будем записывать в объект, а уже объект добавлять в массив
-    let newTodo = {
-        todo1: modalTitle.value,
-        todo2: modalDescr.value,
-        todo3: addMessage.value,
-        
+
+    const note = {
+        title: modalTitle.value,
+        content: modalDescr.value,
+        imageLink: modalImagesLink.value
     };
-    console.log(newTodo);
+    
+
+
+    
+    if(note.title != '' && note.content != ''){
+        modal.classList.add('hide');
+        notes.push(note);
+        console.log(notes);
+        modalTitle.value = '';
+        modalImagesLink.value = '';
+        modalDescr.value = '';
+    }
+    
 
 
     //Добавляем в туду лист наш объект
     // todoList.push(newTodo);
     // displayMessages();
 
-});
-
+};
 

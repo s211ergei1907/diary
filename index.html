@@ -28,7 +28,7 @@
 
             <div class="content">
                 <button class id="myBtn">Добавить новую запись</button>
-                <div id="myModal" class="modal">
+                <div id="myModal" class="modal hide">
                     <div class="modal_content">
                         <span class="close">&times;</span>
                         <p>Создание новое записи</p>
@@ -36,14 +36,39 @@
                             <input type="text" class="modal__input" placeholder="Заголовок">
                             <textarea class="modal__area" placeholder="Напишите сюда свои мысли"></textarea>
                             <input type="text" class="modal__input_images" placeholder="Вставьте ссылку на картинку"><br>
-                            <button class="modal__btn2" type="submit">Добавить</button>
+                            <button class="modal__btn2" type="button">Добавить</button>
                         </form>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
+
+<!-- 
+let obj = {
+    onclick: null
+}
+
+obj.onclick = 2;
+
+obj.onclick = {
+    
+}
+obj.onclick = () =>{
+
+}
+obj.onclick = function(){
+
+}
+const myFunc = (arg) =>{
+    arg();
+}
+
+myFunc(() =>{
+    console.log('sdf');
+}) -->
