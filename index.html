@@ -33,13 +33,18 @@
                         <span class="close">&times;</span>
                         <p>Создание новое записи</p>
                         <form action="" class="modal__form">
-                            <input type="text" class="modal__input" placeholder="Заголовок">
-                            <textarea class="modal__area" placeholder="Напишите сюда свои мысли"></textarea>
+                            <input type="text" name="modal__input" class="modal__input" placeholder="Заголовок" required>
+                            <textarea class="modal__area" name="modal__area" placeholder="Напишите сюда свои мысли" required></textarea>
                             <input type="text" class="modal__input_images" placeholder="Вставьте ссылку на картинку"><br>
-                            <button class="modal__btn2" type="button">Добавить</button>
+                            <button class="modal__btn2" type="submit">Добавить</button>
                         </form>
                     </div>
                 </div>
+            </div>
+            <input id="finderInput" type="text">
+
+            <div class="notes">
+
             </div>
             
         </div>
@@ -72,3 +77,10 @@ const myFunc = (arg) =>{
 myFunc(() =>{
     console.log('sdf');
 }) -->
+
+
+<!-- Что нужно сдедать:
+localstorage
+несколько img (слайдер)
+Отправка формы на enter
+Стилизация -->

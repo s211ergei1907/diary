@@ -6,8 +6,7 @@ const modalTitle = document.querySelector('.modal__input');
 const modalDescr = document.querySelector('.modal__area');
 const modalImagesLink = document.querySelector('.modal__input_images');
 const btnAddNode = document.querySelector('.modal__btn2');
-
-
+const modalForm = document.querySelector('.modal__form');
 
 //Массив в который будем кидать объект
 let notes = [];
@@ -20,17 +19,19 @@ btnOpenModel.onclick = () =>  {
 btnCloseModal.onclick = () => {
     modal.classList.add('hide');
 }
+modalForm.onsubmit = (e) =>{
+    //В эту ф-ию будет передано событие ивент, мы не хотим чтобы страница перезагружалась => event есть метод e.preventDefault(); Убираем стандартное поведение формы
+    console.log(e);
+    e.preventDefault();
 
+    
+}
 
-// window.onclick = function(event){
-//     if(event.target == modal){
-//         modal.style.display = "none";
-//     }
-// }
-
-// Логика (моя)
-//Получаем элементы из html
-
+window.onclick = function(event){
+    if(event.target == modal){
+        modal.classList.add('hide');
+    }
+}
 
 
 // addEventListener - метод который отслеживает клик по кнопке и запускать функцию(вторым параметром)
@@ -41,19 +42,28 @@ btnAddNode.onclick = () => {
     const note = {
         title: modalTitle.value,
         content: modalDescr.value,
-        imageLink: modalImagesLink.value
+        imageLink: modalImagesLink.value,
+        createDate:
+        String(new Date().getDate()).padStart(2, 0) +
+        "." +
+        String(new Date().getMonth() + 1).padStart(2, 0) +
+        "." +
+        new Date().getFullYear(),
+        lastModified: null,
+        modified: false,
     };
     
 
 
     
-    if(note.title != '' && note.content != ''){
+    if(note.title != '' && note.content != '' ){
         modal.classList.add('hide');
         notes.push(note);
         console.log(notes);
         modalTitle.value = '';
         modalImagesLink.value = '';
         modalDescr.value = '';
+        insertNotes(notes);
     }
     
 
@@ -64,29 +74,36 @@ btnAddNode.onclick = () => {
 
 };
 
+
+
 function findNotesByWord(word) {
     return notes.filter(
-        ({ title, body, createDate }) =>
-            body.includes(word) || title.includes(word) || createDate === word
+        ({ title, content, createDate }) =>
+            content.includes(word) || title.includes(word) || createDate === word
     );
 }
-document.querySelector(".notes").innerHTML = createNotes(notes).join("");
 document.querySelector("#finderInput").addEventListener("input", (e) => {
     document.querySelector(".notes").innerHTML = createNotes(
         findNotesByWord(e.target.value)
     ).join("");
 });
 
+function insertNotes(notes){
+    document.querySelector(".notes").innerHTML = createNotes(notes).join("");
+}
+
 function createNotes(notes) {
-    return notes.map(({ title, body, createDate, modified, lastModified }) => {
+    return notes.map(({ title, content, createDate, modified, lastModified, imageLink }) => {
         return `
             <div class="note">
                     <h2>${title}</h2>
-                    <div>${body}</div>
+                    <div>${content}</div>
               <p>Создано: <i>${createDate}</i></p>
-              ${modified ?? `<p>Изменено: <i${lastModified}</i></p>`}
+              ${imageLink ? `<img class="images__js" src="${imageLink}" alt="">`: ''}
+              ${modified ? `<p>Изменено: <i> ${lastModified}</i></p>`: ''}
             </div>
         `;
     });
 }
 
+insertNotes(notes);
