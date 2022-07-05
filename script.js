@@ -9,7 +9,7 @@ const btnAddNode = document.querySelector('.modal__btn2');
 const modalForm = document.querySelector('.modal__form');
 
 //Массив в который будем кидать объект
-const notes = []
+const notes = JSON.parse(localStorage.getItem('notes'));
 
 btnOpenModel.onclick = () => {
     // отобразим модальное окно
@@ -95,6 +95,7 @@ document.querySelector("#finderInput").addEventListener("input", (e) => {
 });
 
 function insertNotes(notes) {
+    localStorage.setItem('notes', JSON.stringify(notes));
     document.querySelector(".notes").innerHTML = createNotes(notes).join("");
 }
 
