@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Личный дневник</title>
 </head>
+
 <body>
     <div class="wrapper">
         <div class="container">
@@ -14,44 +16,41 @@
                 <a href="#" class="logo">
                     <img src="images/logo.svg" alt="Картинка не загрузилась" class="logo__img">
                 </a>
+                <input class="finderInput" id="finderInput" type="text" placeholder="Поиск по странице">
             </div>
-            <table class="table">
-                <tr>
-                    <th>ID</th>
-                    <th>Заголовок</th>
-                    <th>Описание</th>
-                    <th>Картинка</th>
-                    <th>Дата создания</th>
-                    <th>Дата изменения</th>
-                </tr>   
-            </table>
 
             <div class="content">
                 <button class id="myBtn">Добавить новую запись</button>
+
                 <div id="myModal" class="modal hide">
                     <div class="modal_content">
                         <span class="close">&times;</span>
                         <p>Создание новое записи</p>
                         <form action="" class="modal__form">
-                            <input type="text" name="modal__input" class="modal__input" placeholder="Заголовок" required>
-                            <textarea class="modal__area" name="modal__area" placeholder="Напишите сюда свои мысли" required></textarea>
-                            <input type="text" class="modal__input_images" placeholder="Вставьте ссылку на картинку"><br>
+                            <input type="text" name="modal__input" class="modal__input" placeholder="Заголовок"
+                                required>
+                            <textarea class="modal__area" name="modal__area" placeholder="Напишите сюда свои мысли"
+                                required></textarea>
+                            <input type="text" class="modal__input_images"
+                                placeholder="Вставьте ссылку на картинку"><br>
                             <button class="modal__btn2" type="submit">Добавить</button>
                         </form>
                     </div>
                 </div>
             </div>
-            <input id="finderInput" type="text">
+
+
 
             <div class="notes">
 
             </div>
-            
+
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
 
 <!-- 
