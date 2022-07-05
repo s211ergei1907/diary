@@ -9,7 +9,7 @@ const btnAddNode = document.querySelector('.modal__btn2');
 const modalForm = document.querySelector('.modal__form');
 
 //Массив в который будем кидать объект
-const notes = JSON.parse(localStorage.getItem('notes'));
+const notes = JSON.parse(localStorage.getItem('notes')) ?? [];
 
 btnOpenModel.onclick = () => {
     // отобразим модальное окно
@@ -19,26 +19,22 @@ btnOpenModel.onclick = () => {
 btnCloseModal.onclick = () => {
     modal.classList.add('hide');
 }
+
 modalForm.onsubmit = (e) => {
     //В эту ф-ию будет передано событие ивент, мы не хотим чтобы страница перезагружалась => event есть метод e.preventDefault(); Убираем стандартное поведение формы
     console.log(e);
     e.preventDefault();
-
-
 }
 
-window.onclick = function (event) {
-    if (event.target == modal) {
+window.onclick = (event) => {
+    if (event.target === modal) {
         modal.classList.add('hide');
     }
 }
 
-
 // addEventListener - метод который отслеживает клик по кнопке и запускать функцию(вторым параметром)
 btnAddNode.onclick = () => {
-
     //Каждое новое дело будем записывать в объект, а уже объект добавлять в массив
-
     let note = {
         title: modalTitle.value,
         content: modalDescr.value,
@@ -52,13 +48,8 @@ btnAddNode.onclick = () => {
         lastModified: null,
         modified: false,
     };
-    localStorage.setItem('note', JSON.stringify(note));
-    note = JSON.parse(localStorage.getItem('note'));
-    console.log(note);
 
-
-
-    if (note.title != '' && note.content != '') {
+    if (note.title && note.content) {
         modal.classList.add('hide');
         notes.push(note);
         modalTitle.value = '';
@@ -115,4 +106,3 @@ function createNotes(notes) {
 }
 
 insertNotes(notes);
-// console.log(notes);
