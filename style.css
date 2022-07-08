@@ -114,12 +114,15 @@ th {
     display: flex;
     justify-content: space-between;
     text-align: center;
+    background-color: #fefefe;
 }
 
 .images__js {
     width: 300px;
+    height: 300px;
 }
 
 .note__title {
     font-size: 10px;
+
 }

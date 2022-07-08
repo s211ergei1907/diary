@@ -8,8 +8,9 @@ const modalImagesLink = document.querySelector('.modal__input_images');
 const btnAddNode = document.querySelector('.modal__btn2');
 const modalForm = document.querySelector('.modal__form');
 
+modalImagesLink.value = ' ';
 //Массив в который будем кидать объект
-const notes = JSON.parse(localStorage.getItem('notes'));
+let notes = JSON.parse(localStorage.getItem('notes')) ?? [];
 
 btnOpenModel.onclick = () => {
     // отобразим модальное окно
@@ -18,22 +19,23 @@ btnOpenModel.onclick = () => {
 
 btnCloseModal.onclick = () => {
     modal.classList.add('hide');
-}
+};
+
 modalForm.onsubmit = (e) => {
     //В эту ф-ию будет передано событие ивент, мы не хотим чтобы страница перезагружалась => event есть метод e.preventDefault(); Убираем стандартное поведение формы
     console.log(e);
     e.preventDefault();
 
 
-}
+};
 
 window.onclick = function (event) {
     if (event.target == modal) {
         modal.classList.add('hide');
     }
-}
-
-
+};
+// id для того, чтобы знать где какой элемент note
+let id = JSON.parse(localStorage.getItem('i')) ?? 0;
 // addEventListener - метод который отслеживает клик по кнопке и запускать функцию(вторым параметром)
 btnAddNode.onclick = () => {
 
@@ -51,10 +53,13 @@ btnAddNode.onclick = () => {
             new Date().getFullYear(),
         lastModified: null,
         modified: false,
+        id: id += 1,
+        checked: false
     };
-    localStorage.setItem('note', JSON.stringify(note));
-    note = JSON.parse(localStorage.getItem('note'));
+    // localStorage.setItem('note', JSON.stringify(note));
+    // note = JSON.parse(localStorage.getItem('note'));
     console.log(note);
+    localStorage.setItem('id', JSON.stringify(id));
 
 
 
@@ -62,7 +67,7 @@ btnAddNode.onclick = () => {
         modal.classList.add('hide');
         notes.push(note);
         modalTitle.value = '';
-        modalImagesLink.value = '';
+        modalImagesLink.value = ' ';
         modalDescr.value = '';
         insertNotes(notes);
         //!Проверка условия 
@@ -73,7 +78,7 @@ btnAddNode.onclick = () => {
 
 
 
-    //Добавляем в туду лист наш объект
+    //Добавляем наш объект в массив
     // todoList.push(newTodo);
     // displayMessages();
 
@@ -100,19 +105,36 @@ function insertNotes(notes) {
 }
 
 function createNotes(notes) {
-    return notes.map(({ title, content, createDate, modified, lastModified, imageLink }) => {
+    return notes.map(({ title, content, createDate, modified, lastModified, imageLink, id, checked }) => {
         return `
-        
-            <div class="note">
-                    <h2 class="note__title">${title}</h2>
+
+            <div class="note" id='item_${id}'>
+                    <div>
+                        <h2 class="note__title" id='item_${id}'>${title}</h2>
+                        <input type="checkbox" ${checked}/><br/>
+                        <span class="close move">&oplus;</span>
+                    </div>
                     <div class="note__content">${content}</div>
                     <p class="note__createDate">Создано: ${createDate}</p>
                     ${imageLink ? `<img class="images__js" src="${imageLink}" alt="">` : ''}
                     ${modified ? `<p>Изменено: <i> ${lastModified}</i></p>` : ''}
             </div>
+            
         `;
     });
-}
 
-insertNotes(notes);
-// console.log(notes);
+
+}
+// Перебор массива
+// function checkedNote() {
+//     notes.forEach((item, id) => {
+
+//     });
+// }
+
+//
+checked.addEventListener('change', function (event) {
+    console.log(event.target.getAtribute('id'));
+
+
+    insertNotes(notes);
