@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/css/style.css">
     <title>Личный дневник</title>
 </head>
 
@@ -21,6 +21,7 @@
 
             <div class="content">
                 <button class id="myBtn">Добавить новую запись</button>
+                <button class="btnDeleteNode" onclick="getCheckedCheckBoxes()"> Удалить </button>
                 <button class="btnDeleteNode" onclick="getCheckedCheckBoxes()"> Удалить </button>
                 <div id="myModal" class="modal hide">
                     <div class="modal_content">
@@ -48,7 +49,7 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="src/index.js" type="module"></script>
 </body>
 
 </html>

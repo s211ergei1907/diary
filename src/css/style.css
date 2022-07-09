@@ -16,7 +16,7 @@ body {
 }
 
 .wrapper {
-    background-image: url(./images/fon.jpg);
+    background-image: url(../../images/fon.jpg);
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
@@ -44,21 +44,25 @@ body {
 
 .modal {
     position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
+    background-color: rgba(0,0,0, 0.5);
     width: 100%;
     height: 100%;
-    overflow: auto;
+    top: 0;
+    left: 0;
+
 }
 
+
 .modal_content {
+    z-index: 1;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fefefe;
-    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-
+    max-width: 500px;
 }
 
 .close {
@@ -115,6 +119,8 @@ th {
     justify-content: space-between;
     text-align: center;
     background-color: #fefefe;
+    margin: 10px 0;
+    padding: 10px;
 }
 
 .images__js {
