@@ -123,6 +123,10 @@ th {
 }
 
 .note__title {
-    font-size: 10px;
+    font-size: 14px;
 
+}
+
+.note__content {
+    padding: 15px;
 }

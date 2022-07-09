@@ -7,8 +7,11 @@ const modalDescr = document.querySelector('.modal__area');
 const modalImagesLink = document.querySelector('.modal__input_images');
 const btnAddNode = document.querySelector('.modal__btn2');
 const modalForm = document.querySelector('.modal__form');
+//Удаление записи
+const btnDeleteNode = document.querySelector('.btnDeleteNode');
 
-modalImagesLink.value = ' ';
+
+// modalImagesLink.value = ' ';
 //Массив в который будем кидать объект
 let notes = JSON.parse(localStorage.getItem('notes')) ?? [];
 
@@ -35,7 +38,7 @@ window.onclick = function (event) {
     }
 };
 // id для того, чтобы знать где какой элемент note
-let id = JSON.parse(localStorage.getItem('i')) ?? 0;
+let id = JSON.parse(localStorage.getItem('id')) ?? -1;
 // addEventListener - метод который отслеживает клик по кнопке и запускать функцию(вторым параметром)
 btnAddNode.onclick = () => {
 
@@ -58,7 +61,7 @@ btnAddNode.onclick = () => {
     };
     // localStorage.setItem('note', JSON.stringify(note));
     // note = JSON.parse(localStorage.getItem('note'));
-    console.log(note);
+    // console.log(note);
     localStorage.setItem('id', JSON.stringify(id));
 
 
@@ -70,8 +73,7 @@ btnAddNode.onclick = () => {
         modalImagesLink.value = ' ';
         modalDescr.value = '';
         insertNotes(notes);
-        //!Проверка условия 
-        console.log(notes);
+        // console.log(notes);
     }
     //!localstorage устанавливаем значение
     // localStorage.setItem('notes', JSON.stringfy(notes));
@@ -108,11 +110,10 @@ function createNotes(notes) {
     return notes.map(({ title, content, createDate, modified, lastModified, imageLink, id, checked }) => {
         return `
 
-            <div class="note" id='item_${id}'>
+            <div class="note" id='${id}'>
                     <div>
-                        <h2 class="note__title" id='item_${id}'>${title}</h2>
-                        <input type="checkbox" ${checked}/><br/>
-                        <span class="close move">&oplus;</span>
+                        <h2 class="note__title" id='${id}'>${title}</h2>
+                        <input class="checkbox" type="checkbox" ${checked}/><br/>
                     </div>
                     <div class="note__content">${content}</div>
                     <p class="note__createDate">Создано: ${createDate}</p>
@@ -121,6 +122,8 @@ function createNotes(notes) {
             </div>
             
         `;
+        console.log(notes);
+
     });
 
 
@@ -133,8 +136,29 @@ function createNotes(notes) {
 // }
 
 //
-checked.addEventListener('change', function (event) {
-    console.log(event.target.getAtribute('id'));
 
+btnDeleteNode.onclick = () => {
+    getCheckedCheckBoxes();
+};
+//Перебор отмеченных chekbox
+let checkboxesChecked = [];
+function getCheckedCheckBoxes() {
+    let checkboxes = document.getElementsByClassName('checkbox');
+    // можно в массиве их хранить, если нужно использовать 
+    for (let index = 0; index < checkboxes.length; index++) {
+        if (checkboxes[index].checked) {
+            checkboxesChecked.push(checkboxes[index].value); // положим в массив выбранный
+            console.log(checkboxesChecked);
+        }
+    }
+    return checkboxesChecked; // для использования в нужном месте
+}
 
-    insertNotes(notes);
+// function deleteCheckbox() {
+//     for (let index = 0; index < checkboxesChecked.length; index++) {
+//         for(j = index + 1,  ){
+
+//         }
+//     }
+
+// }
