@@ -7,3 +7,4 @@ export const modalImagesLink = document.querySelector('.modal__input_images');
 export const btnAddNode = document.querySelector('.modal__btn2');
 export const modalForm = document.querySelector('.modal__form');
 export const btnDeleteNode = document.querySelector('.btnDeleteNode');
+export const finderInput = document.querySelector("#finderInput");
