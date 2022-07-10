@@ -7,6 +7,7 @@ export const closeModal = () => {
     store.setChangingNoteId(null);
     store.setIsSendingModal(false);
     resetModalValues();
+    window.onkeydown = undefined;
 }
 
 export const openModal = () => {
