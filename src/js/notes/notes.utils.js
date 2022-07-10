@@ -1,4 +1,4 @@
-import {store} from "./store/store.js";
+import {store} from "../store/store.js";
 
 export const getPrettyFullDate = () => {
     return (
@@ -11,7 +11,7 @@ export const getPrettyFullDate = () => {
 }
 
 export const formNote = (noteData) => {
-     return {
+    return {
         title: noteData.title,
         content: noteData.content,
         imageLink: noteData.imageLink,
@@ -23,8 +23,7 @@ export const formNote = (noteData) => {
 }
 
 const updateNote = (noteData, id) => {
-    const state = store.getState();
-    const note = state.notes.filter(note => note.id === Number(id))[0];
+    const note = store.getNoteById(id);
     const newNote = {
         ...note,
         title: noteData.title,
@@ -40,6 +39,23 @@ const createNote = (noteData) => {
     store.saveNewNote(note);
 }
 
+export function formNotes(notes) {
+    return notes.map(({ title, content, createDate, modified, lastModified, imageLink, id }) => {
+        return `
+            <div class="note" id='${id}'>
+                    <div>
+                        <h2 class="note__title">${title}</h2>
+                        <input class="checkbox" type="checkbox" data-id=${id}><br/>
+                        <button class="change_note" data-id=${id}>Изменить</button>
+                    </div>
+                    <div class="note__content">${content}</div>
+                    <p class="note__createDate">Создано: ${createDate}</p>
+                    ${imageLink ? `<img class="images__js" src="${imageLink}" alt="">` : ''}
+                    ${modified ? `<p>Изменено: <i> ${lastModified}</i></p>` : ''}
+            </div>
+        `;
+    });
+}
 
 export const onSendNote = (noteData) => {
     const state = store.getState();

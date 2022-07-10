@@ -5,15 +5,13 @@ export const closeModal = () => {
     modal.classList.add('hide');
     window.onclick = undefined;
     store.setChangingNoteId(null);
+    store.setIsSendingModal(false);
     resetModalValues();
 }
 
 export const openModal = () => {
-    if(store.getState().changingNoteId){
-        btnAddNode.innerHTML = "Изменить";
-    } else {
-        btnAddNode.innerHTML = "Добавить";
-    }
+    btnAddNode.innerHTML = store.getState().changingNoteId ? "Изменить" : "Добавить";
+
     modal.classList.remove('hide');
     window.onclick = (e) => {
         if (e.target === modal) {
@@ -22,7 +20,7 @@ export const openModal = () => {
     };
     window.onkeydown = (e) => {
         if(e.key === "Enter"){
-
+            store.setIsSendingModal(true);
         }
     }
 }

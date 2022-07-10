@@ -1,5 +1,6 @@
 import {render} from "../render.js";
-import {closeModal, openModal} from "../modal.js";
+import {closeModal, getValuesFromModal, openModal} from "../modal.js";
+import {onSendNote} from "../notes/notes.utils.js";
 
 export const subscribers = {
     "notes": () => {
@@ -13,5 +14,8 @@ export const subscribers = {
     },
     "isModal": (state) => {
         state.isModal ? openModal() : closeModal();
+    },
+    "isSendingModal": (state) => {
+        state.isSendingModal && onSendNote(getValuesFromModal());
     }
 }

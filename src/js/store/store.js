@@ -7,16 +7,17 @@ const initialState = {
     changingNoteId: null, // string | null
     isSearching: false,
     isModal: false,
+    isSendingModal: false,
     searchedNotes: [],
 }
 
 export const store = {
     _state: new Proxy({}, {
-        set(target, prop, val){
+        set(target, key, val){
             const oldTarget = {...target};
-            target[prop] = val;
+            target[key] = val;
             const newTarget = {...target};
-            subscribers[prop]?.(newTarget, oldTarget);
+            subscribers[key]?.(newTarget, oldTarget);
             return true;
         }
     }),
@@ -70,5 +71,9 @@ export const store = {
     getUUID(){
         this._state.UUID += 1;
         return this._state.UUID;
+    },
+
+    setIsSendingModal(flag){
+        this._state.isSendingModal = flag;
     }
 }

@@ -1,6 +1,6 @@
 import {store} from "./store/store.js";
 import { prefillModal } from "./modal.js";
-import {formNotes} from "./formNotes.js";
+import {formNotes} from "./notes/notes.utils.js";
 
 export function render() {
     const state = store.getState();
